@@ -1,0 +1,3 @@
+1.netstat -ano|findstr "3000"
+
+2.去任务管理器里，关闭这个pid的进程，一般是node的进程。

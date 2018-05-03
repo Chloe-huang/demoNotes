@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script src='../vue-2.2.0.min.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            /* user-select: none; */
+        }
+
+        /* 下拉框 */
+
+        #demo .dropdown ul {
+            position: relative;
+            width: 160px;
+            /* 必须固定盒子高度，否则没有动画效果 */
+            height: 137px;
+            margin-top: -1px;
+            overflow: hidden;
+            border: 1px solid #cacaca;
+            z-index: 10;
+            background: #fff;
+        }
+
+        .dropdown ul li {
+            position: relative;
+            width: 145px;
+            height: 22px;
+            line-height: 22px;
+            border-bottom: 1px solid #cacaca;
+            padding-left: 15px;
+            z-index: 10;
+            background: #fff;
+        }
+        .dropdown ul li:nth-last-child(){
+            border-bottom:0px;
+        }
+
+        .dropdown ul li.select::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: url("./dg.png") center center no-repeat;
+        }
+
+        .dropdown ul li::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0px;
+            height: 22px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown ul li:hover::before {
+            transition: all .5s;
+            width: 160px;
+        }
+
+        .dropdown>span {
+            position: relative;
+            display: inline-block;
+            width: 145px;
+            height: 22px;
+            line-height: 22px;
+            color: #63A7D3;
+            border: 1px solid #cacaca;
+            border-radius: 3px;
+            padding-left: 15px;
+            background: #fff;
+        }
+
+        .dropdown>span::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            width: 16px;
+            height: 8px;
+            margin-top: -4px;
+            background: url("./down.png")no-repeat;
+            background-size: 80%;
+        }
+
+        .dropdown>span:hover {
+            background: #f8f8f8;
+        }
+
+        /* 动画开始 */
+        .dropdown .toggle-enter-active,
+        .dropdown .toggle-leave-active {
+            transition: all .5s;
+        }
+
+        #demo .dropdown .toggle-enter,
+        #demo .dropdown .toggle-leave-to {
+            height: 0;
+        }
+        /* 动画结束 */
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <div class="dropdown">
+            <span tabindex=1 @click='dropdownShow=!dropdownShow'
+            @blur='dropdownShow=0'
+            >{{dropParams[nowIndex]}}</span>
+            <transition name="toggle">
+                <ul v-show='dropdownShow'>
+                    <li v-for='(item, index) in this.dropParams' :index="index" @click="select" :class="{'select':index==nowIndex}">{{item}}</li>
+                </ul>
+            </transition>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#demo',
+        data: {
+            nowIndex: 0,
+            dropdownShow: false,
+            dropParams: ['总总总', '月月月', '日日日', '年年年', '分分分', '分分分']
+        },
+        methods: {
+            select(event) {
+                console.log(event.target.getAttribute('index'));
+                this.nowIndex = event.target.getAttribute('index');
+                this.dropdownShow = 0;
+            }
+        },
+    })
+</script>
+
+</html>

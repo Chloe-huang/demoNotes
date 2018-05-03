@@ -1,0 +1,9 @@
+axios中，get请求和post请求携带参数的方式不一样，具体如下：
+axios.get(url, {
+            params: {
+                id: 123456
+            }
+        }).then(res => {})
+    axios.post(url, {
+            id: 123456
+        }).then(res => {})
