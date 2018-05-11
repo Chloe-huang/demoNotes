@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/1.7.2/jquery.min.js"></script>
+    <style>
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background-color: #fff; -webkit-border-radius: 8px; }
+        ::-webkit-scrollbar-thumb { -webkit-border-radius: 5px; background: #e6e6e6; border: none; }
+        ::-webkit-scrollbar-thumb:vertical:hover { background-color: #a6a6a6; border: none; }
+        ::-webkit-scrollbar-thumb:hover { background-color: #a6a6a6; border: none; }
+        html{
+            height: 100%;
+        }
+        body{
+            box-sizing: border-box;
+            margin: 0;padding: 0;
+            border: 1px solid red;
+            height: 100%;
+            overflow-y: auto;
+            /* overflow: hidden; */
+
+        }
+        .btn1,.btn2,.btn3{
+            position: fixed;
+            left: 200px;
+        }
+        .btn2{
+            left: 300px;
+        }
+        .btn3{
+            left: 400px;
+        }
+        .content{
+            position: absolute;
+            top: 0;right: 0;bottom: 0;left: 0;
+            overflow-y: scroll;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- <div class="aa">
+    </div> -->
+    <div class="content">
+        <button class="btn1">保存位置</button>
+        <button class="btn2">回到顶部</button>
+        <button class="btn3">归位</button>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p>1211111</p>
+        <p class="son">1211111</p>
+    </div>
+</body>
+    <script>
+        $(document).ready(function(){
+            $(".btn1").click(function () {
+            old = $(".content").scrollTop();
+            console.log(old);
+            });
+
+            $(".btn2").click(function () {
+                $(".content").scrollTop(0);
+                console.log("顶部");
+
+             })
+              $(".btn3").click(function () {
+                $(".content").scrollTop(old);
+                console.log("归位");
+
+             })
+
+
+
+        })
+
+
+    </script>
+
+</html>
