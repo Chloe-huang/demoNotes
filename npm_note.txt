@@ -1,0 +1,11 @@
+npm 包 常用 命令
+
+1.npm view vue versions  显示所有版本
+2.npm version patch  小版本 1.0.1
+3.npm version minor  中版本 1.1.0
+4.npm version major  大版本 2.0.0
+
+5.npm public  发布出去
+
+Tips:一定要cd到node_modules 下的具体的包里；确保不是在根目录里versionpatch。
+
