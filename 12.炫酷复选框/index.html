@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: white;
+            overflow: hidden;
+        }
+
+        #check {
+            z-index: -1;
+            display: none;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .container h1 {
+            font-family: 'Open Sans', sans-serif;
+            padding-left: 40px;
+            font-size: 80px;
+            color: #777;
+            }
+
+        #check:checked+.container .check_label {
+            background: #0080ff;
+            -webkit-clip-path: polygon(18% 25%, 40% 53%, 90% 13%, 100% 26%, 36% 79%, 5% 36%);
+            transition: all 0.5s ease;
+        }
+        #check:checked+.container .check_label .effect {
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .check_label {
+            width: 60px;
+            height: 60px;
+            background: white;
+            padding: 15px;
+            border-radius: 30px;
+            overflow: hidden;
+            -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 100%, 50% 100%, 0 100%, 0 0);
+            transition: all 0.5s ease;
+            border: 2px solid #0080ff;
+            cursor: pointer;
+        }
+
+        .effect {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            -webkit-clip-path: polygon(18% 25%, 40% 53%, 90% 13%, 100% 26%, 36% 79%, 5% 36%);
+            background: rgba(0, 128, 255, 0.1);
+            transition: all 0.5s;
+            transition-delay: 0.1s;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" id="check">
+    <label for="check" class="container">
+        <div class="check_label">
+            <div class="effect"></div>
+        </div>
+        <h1>Check me!</h1>
+    </label>
+</body>
+
+</html>
