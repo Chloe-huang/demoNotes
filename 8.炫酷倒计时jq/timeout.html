@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>炫酷倒计时</title>
+    <script src='https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js'></script>
+</head>
+
+<body>
+    <div id='box' style="width:100%;height:100px"></div>
+
+</body>
+<script>
+    // ****************************** 炫酷倒计时 start *********************************
+    $("#box").append("<div></div>");
+    $("#box div").css({
+        position: "absolute",
+        top: 0,
+        right: 0
+    });
+    $("#box div").attr("id", "pdata");
+    $(function () {
+        $("#pdata").html('<canvas id="canvas"></canvas>');
+        var g = 260;
+        var k = 100;
+        var j = 1.5;
+        var h = 10;
+        var n = 0.65;
+        var d;
+        var b = [];
+        const a = ["#33B5E5", "#0099CC", "#AA66CC", "#9933CC", "#99CC00", "#669900", "#FFBB33", "#FF8800",
+            "#FF4444", "#CC0000"
+        ];
+        var l = [];
+        var m = [
+            [
+                [0, 0, 1, 1, 1, 0, 0],
+                [0, 1, 1, 0, 1, 1, 0],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [0, 1, 1, 0, 1, 1, 0],
+                [0, 0, 1, 1, 1, 0, 0]
+            ],
+            [
+                [0, 0, 0, 1, 1, 0, 0],
+                [0, 1, 1, 1, 1, 0, 0],
+                [0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 0, 1, 1, 0, 0],
+                [1, 1, 1, 1, 1, 1, 1]
+            ],
+            [
+                [0, 1, 1, 1, 1, 1, 0],
+                [1, 1, 0, 0, 0, 1, 1],
+                [0, 0, 0, 0, 0, 1, 1],
+                [0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 1, 1, 0, 0, 0],
+                [0, 1, 1, 0, 0, 0, 0],
+                [1, 1, 0, 0, 0, 0, 0],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 1, 1, 1, 1, 1]
+            ],
+            [
+                [1, 1, 1, 1, 1, 1, 1],
+                [0, 0, 0, 0, 0, 1, 1],
+                [0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 1, 1, 1, 0, 0],
+                [0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 0, 0, 1, 1],
+                [0, 0, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [0, 1, 1, 1, 1, 1, 0]
+            ],
+            [
+                [0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 1, 1, 1, 0],
+                [0, 0, 1, 1, 1, 1, 0],
+                [0, 1, 1, 0, 1, 1, 0],
+                [1, 1, 0, 0, 1, 1, 0],
+                [1, 1, 1, 1, 1, 1, 1],
+                [0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 1, 1, 1, 1]
+            ],
+            [
+                [1, 1, 1, 1, 1, 1, 1],
+                [1, 1, 0, 0, 0, 0, 0],
+                [1, 1, 0, 0, 0, 0, 0],
+                [1, 1, 1, 1, 1, 1, 0],
+                [0, 0, 0, 0, 0, 1, 1],
+                [0, 0, 0, 0, 0, 1, 1],
+                [0, 0, 0, 0, 0, 1, 1],
+                [0, 0, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [0, 1, 1, 1, 1, 1, 0]
+            ],
+            [
+                [0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 1, 1, 0, 0, 0],
+                [0, 1, 1, 0, 0, 0, 0],
+                [1, 1, 0, 0, 0, 0, 0],
+                [1, 1, 0, 1, 1, 1, 0],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [0, 1, 1, 1, 1, 1, 0]
+            ],
+            [
+                [1, 1, 1, 1, 1, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 1, 1, 0, 0, 0],
+                [0, 0, 1, 1, 0, 0, 0],
+                [0, 0, 1, 1, 0, 0, 0],
+                [0, 0, 1, 1, 0, 0, 0]
+            ],
+            [
+                [0, 1, 1, 1, 1, 1, 0],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [0, 1, 1, 1, 1, 1, 0],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [0, 1, 1, 1, 1, 1, 0]
+            ],
+            [
+                [0, 1, 1, 1, 1, 1, 0],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [1, 1, 0, 0, 0, 1, 1],
+                [0, 1, 1, 1, 0, 1, 1],
+                [0, 0, 0, 0, 0, 1, 1],
+                [0, 0, 0, 0, 0, 1, 1],
+                [0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 1, 1, 0, 0],
+                [0, 1, 1, 0, 0, 0, 0]
+            ],
+            [
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 1, 1, 0],
+                [0, 1, 1, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 1, 1, 0],
+                [0, 1, 1, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]
+            ]
+        ];
+
+        function i(z) {
+            var D = [];
+            d.fillStyle = "#005eac";
+            var r = new Date();
+            var u = 70,
+                t = 30;
+            var B = r.getHours();
+            var y = Math.floor(B / 10);
+            var w = B % 10;
+            D.push({
+                num: y
+            });
+            D.push({
+                num: w
+            });
+            D.push({
+                num: 10
+            });
+            var s = r.getMinutes();
+            var y = Math.floor(s / 10);
+            var w = s % 10;
+            D.push({
+                num: y
+            });
+            D.push({
+                num: w
+            });
+            D.push({
+                num: 10
+            });
+            var C = r.getSeconds();
+            var y = Math.floor(C / 10);
+            var w = C % 10;
+            D.push({
+                num: y
+            });
+            D.push({
+                num: w
+            });
+            for (var A = 0; A < D.length; A++) {
+                D[A].offsetX = u;
+                u = o(u, t, D[A].num, z);
+                if (A < D.length - 1) {
+                    if ((D[A].num != 10) && (D[A + 1].num != 10)) {
+                        u += h
+                    }
+                }
+            }
+            if (l.length == 0) {
+                l = D
+            } else {
+                for (var v = 0; v < l.length; v++) {
+                    if (l[v].num != D[v].num) {
+                        f(D[v]);
+                        l[v].num = D[v].num
+                    }
+                }
+            }
+            q(z);
+            p();
+            return r
+        }
+
+        function f(u) {
+            var t = u.num;
+            var s = m[t];
+            for (var w = 0; w < s.length; w++) {
+                for (var r = 0; r < s[w].length; r++) {
+                    if (s[w][r] == 1) {
+                        var v = {
+                            offsetX: u.offsetX + j + j * 2 * r,
+                            offsetY: 30 + j + j * 2 * w,
+                            color: a[Math.floor(Math.random() * a.length)],
+                            g: 1.5 + Math.random(),
+                            vx: Math.pow(-1, Math.ceil(Math.random() * 10)) * 4 + Math.random(),
+                            vy: -5
+                        };
+                        b.push(v)
+                    }
+                }
+            }
+        }
+
+        function q(r) {
+            for (var s = 0; s < b.length; s++) {
+                r.beginPath();
+                r.fillStyle = b[s].color;
+                r.arc(b[s].offsetX, b[s].offsetY, j, 0, 2 * Math.PI);
+                r.fill()
+            }
+        }
+
+        function p() {
+            var s = 0;
+            for (var r = 0; r < b.length; r++) {
+                var t = b[r];
+                t.offsetX += t.vx;
+                t.offsetY += t.vy;
+                t.vy += t.g;
+                if (t.offsetY > (k - j)) {
+                    t.offsetY = k - j;
+                    t.vy = -t.vy * n
+                }
+                if (t.offsetX > j && t.offsetX < (g - j)) {
+                    b[s] = b[r];
+                    s++
+                }
+            }
+            for (; s < b.length; s++) {
+                b.pop()
+            }
+        }
+
+        function o(s, z, v, u) {
+            var t = m[v];
+            for (var w = 0; w < t.length; w++) {
+                for (var r = 0; r < t[w].length; r++) {
+                    if (t[w][r] == 1) {
+                        u.beginPath();
+                        u.arc(s + j + j * 2 * r, z + j + j * 2 * w, j, 0, 2 * Math.PI);
+                        u.fill()
+                    }
+                }
+            }
+            u.beginPath();
+            s += t[0].length * j * 2;
+            return s
+        }
+        var e = document.getElementById("canvas");
+        e.width = g;
+        e.height = k;
+        d = e.getContext("2d");
+        var c = new Date();
+        setInterval(function () {
+            d.clearRect(0, 0, d.canvas.width, d.canvas.height);
+            i(d)
+        }, 50)
+    });
+    // ****************************** 炫酷倒计时 end *********************************
+</script>
+
+</html>
