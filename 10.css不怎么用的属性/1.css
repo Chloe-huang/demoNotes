@@ -19,3 +19,20 @@
 input:in-range{
 	 border: 5px solid green;
 }
+
+
+/*整个body可拖动*/
+body{
+	-webkit-app-region: drag;
+}
+/*解放按钮btn*/
+.btn{
+	-webkit-app-region: no-drag;
+}
+
+
+/*旋转后不显示背面*/
+{
+	-webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
