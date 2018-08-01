@@ -21,7 +21,7 @@ input:in-range{
 }
 
 
-/*整个body可拖动*/
+/*整个body可拖动  body设置拖动后内部元素不能相对body绝对定位 否则拖动无效*/
 body{
 	-webkit-app-region: drag;
 }
