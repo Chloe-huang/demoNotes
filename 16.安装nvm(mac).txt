@@ -1,4 +1,4 @@
 安装nvm
 1.bash 下 （没有的话，顺便装个git）
 sudo curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
-2.成功后复制提示的这两行代码执行，此时增加了环境变量，可以用了
+查看提示是否成功，有可能显示con't find .bash_profile ,此时创建文件 touch .bash_profile,重新执行上条指令即可。
