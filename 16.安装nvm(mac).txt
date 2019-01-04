@@ -1,0 +1,4 @@
+安装nvm
+1.bash 下 （没有的话，顺便装个git）
+sudo curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
+2.成功后复制提示的这两行代码执行，此时增加了环境变量，可以用了
