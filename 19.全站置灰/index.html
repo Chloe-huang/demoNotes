@@ -1,0 +1,36 @@
+<!DOCTYPE html >
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<!-- 增加 -->
+  <style>
+   html{
+      filter: gray !important;
+      filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+      filter: grayscale(100%);
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+      -o-filter: grayscale(100%); 
+    }
+  </style>
+  <script src="./js/grayscale.js"></script>
+  <script>
+    $(document).ready(function(){
+      if(!!window.ActiveXObject || "ActiveXObject" in window){ // 判断是IE
+        grayscale(document.body);
+        grayscale(document.getElementsByTagName("img"));
+      }
+    })
+  </script>
+
+  <!-- end -->
+</head>
+<body>
+  <p style="color: red;">12djoewfioenfoeifnenfi</p>
+    <img src="./ad.jpg" alt="">
+</body>
+</html>
